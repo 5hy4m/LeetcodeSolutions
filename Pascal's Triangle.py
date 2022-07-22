@@ -1,17 +1,21 @@
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-        result = [1]
-        for _ in numRows:
-            pascal_row = build_row(result[-1])
-            result.append(pascal_row)
+        result = [[1]]
+        if numRows > 1:
+            for _ in range(numRows-1):
+                pascal_row = self.build_row(result[-1])
+                result.append(pascal_row)
         return result
         
-    def build_row(arr):
-        p1 = -1
-        p2 = 0
-        len = len(arr)
+    def build_row(self,arr):
+        p1 = 0
+        p2 = 1
+        res = [1]
+        length = len(arr)
         
-        if p2 == len+1:
-            return arr
-        
-        arr.
+        while p2 < length:
+            res.append(arr[p1]+arr[p2])
+            p1+=1
+            p2+=1
+        res.append(1)
+        return res
